@@ -15,13 +15,17 @@ export default function App() {
   }, []);
 
   return (
-    <Progress
+    <div className='flex w-screen h-screen flex-col justify-center items-center gap-10'>
+        <Progress
       aria-label="Please wait"
       size="md"
       value={value}
       color="success"
       showValueLabel={true}
-      className="max-w-md"
+      className='flex items-center gap-2'
+      
     />
+    </div>
+    
   );
 }
