@@ -1,8 +1,7 @@
 'use client'
-import { Box, Button, Stack, TextField } from "@mui/material";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Input, Stack, TextField } from "@mui/material";
 import Image from "next/image";
 import {useState} from 'react'
-
 export default function Home() {
   const[messages,setMessages] = useState([{
     role: 'assistant',
@@ -10,6 +9,27 @@ export default function Home() {
   }])
 
   const [message,setMessage] = useState('')
+  const [file,setFile] = useState('')
+  const [pdfstr,setPdfstr] = useState('')
+
+  const pdftoString = async() => {
+    const res = fetch('/api/pdfstring',{
+      method:'POST',
+      body: file,
+    })
+    .then((data) => setPdfstr(data))
+    return
+    //const pdfparse = require('pdf-parse')
+      //const fs = require('fs')
+      /*try{
+        console.log()
+        return
+      } catch(err){
+        console.log("Error coverting Resume to PDF",err)
+        throw err
+      }*/
+      
+    }
   const sendMessage = async()=>{
     setMessage('')
     setMessages((messages)=> [
@@ -26,7 +46,6 @@ export default function Home() {
     }).then(async(res)=> {
       const reader = res.body.getReader()
       const decoder = new TextDecoder()
-
       let result = ''
       return reader.read().then(function processText({done, value}){
         if(done){
@@ -93,8 +112,15 @@ export default function Home() {
             fullWidth
             value={message}
             onChange={(e) => setMessage(e.target.value)}/>
-            <Button variant="contained" onClick={sendMessage}>Send</Button>
+            
+            <Input 
+            type="file" 
+            accept="pdf"
+            onChange={(e)=>setFile(e.target.files[0])}
+            ></Input>
+            <Button variant="contained" onClick={pdftoString}>Send</Button>
         </Stack>
     </Stack>
+
   </Box>
 }

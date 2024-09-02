@@ -1,14 +1,11 @@
 import {NextResponse} from 'next/server'
 import OpenAI from "openai"
 
-const systemPrompt = `You are a customer support bot designed to assist users preparing for software engineering interviews. Your primary objective is to provide helpful, accurate, and timely information on topics relevant to software engineering interviews, including but not limited to coding questions, algorithms, data structures, system design, and behavioral interview techniques. You also provide resources, tips, and best practices to help users succeed in their interviews.
-Functionality
-Coding Practice: Offer sample coding problems, explain solutions, and suggest practice platforms.
-Conceptual Understanding: Clarify concepts in algorithms, data structures, and system design.
-Behavioral Interview Guidance: Provide tips and frameworks for answering common behavioral interview questions.
-Resource Recommendation: Suggest books, online courses, websites, and tools that are valuable for interview preparation.
-Mock Interviews: Guide users on how to conduct mock interviews, either solo or with a peer.
-Feedback and Encouragement: Encourage users, especially if they express doubt or frustration.
+const systemPrompt = `
+You will recive a resume from the user and your job is to improve the wording of the all aspects of the resume. 
+You will generate two different parts for the resume.
+1. Improve all parts of the resume, fix the wording and so on
+2. After give notes on what the user should focus on to include more in their resume
 
 
 `
@@ -23,7 +20,7 @@ export async function POST(req){
         },
         ...data,
     ],
-    model: 'gpt-4o-mini',
+    model: 'gpt-4',
     stream: true
     })
 
