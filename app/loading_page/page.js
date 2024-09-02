@@ -16,15 +16,16 @@ export default function App() {
 
   return (
     <div className='flex w-screen h-screen flex-col justify-center items-center gap-10'>
+      <div className='w-48'> 
         <Progress
       aria-label="Please wait"
       size="md"
+      radius="sm"
       value={value}
       color="success"
       showValueLabel={true}
-      className='flex items-center gap-2'
-      
-    />
+      />
+      </div>
     </div>
     
   );
