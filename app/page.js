@@ -12,23 +12,20 @@ export default function Home() {
   const [file,setFile] = useState('')
   const [pdfstr,setPdfstr] = useState('')
 
-  const pdftoString = async() => {
-    const res = fetch('/api/pdfstring',{
-      method:'POST',
+  const pdftoString = () => {
+    const text = "hello"
+    const response = fetch('/api/chat', {
+      method: "POST",
       body: file,
+  }).then((res) => setPdfstr(res))
+    
+    
+    /*const text = "hello"
+    fetch('api/pdstr',{
+      method:'POST',
+      body: text,
     })
-    .then((data) => setPdfstr(data))
-    return
-    //const pdfparse = require('pdf-parse')
-      //const fs = require('fs')
-      /*try{
-        console.log()
-        return
-      } catch(err){
-        console.log("Error coverting Resume to PDF",err)
-        throw err
-      }*/
-      
+    */
     }
   const sendMessage = async()=>{
     setMessage('')
@@ -119,6 +116,7 @@ export default function Home() {
             onChange={(e)=>setFile(e.target.files[0])}
             ></Input>
             <Button variant="contained" onClick={pdftoString}>Send</Button>
+            <Button variant="contained" onClick={sendMessage}>Send Text</Button>
         </Stack>
     </Stack>
 

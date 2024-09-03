@@ -1,6 +1,6 @@
 import {NextResponse} from 'next/server'
 import OpenAI from "openai"
-
+//import pdfparse from 'pdf-parse'
 const systemPrompt = `
 You will recive a resume from the user and your job is to improve the wording of the all aspects of the resume. 
 You will generate two different parts for the resume.
@@ -11,8 +11,25 @@ You will generate two different parts for the resume.
 `
 
 export async function POST(req){
-    const openai = new OpenAI()
+    const fs = require('fs')
+    const pdf = require('pdf-parse')
+    let dataBuffer = fs.readFileSync(req.file)
+    pdfparse(dataBuffer).then(function(data){
+        const str = data.text
+        //const dat = req.text()
+        //console.log(dat)
+        console.log(str)
+    })
+    return new NextResponse 
+
+    /*const data = await req.text()
+    console.log(data)
+    //})
+    return new NextResponse*/
+
+    /*const openai = new OpenAI()
     const data = await req.json()
+    
     const completion = await openai.chat.completions.create({
         messages: [{
             role: 'system',
@@ -42,6 +59,7 @@ export async function POST(req){
                 controller.close()
             }
         },
-    })
-    return new NextResponse(steam)
+    })*/
+    //return new NextResponse//(steam)
+
 }
