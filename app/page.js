@@ -16,6 +16,7 @@ export default function Home() {
   }
   return (
     <div className='flex w-screen h-screen flex-col justify-center items-center gap-10'>
+        <Button href="sign_in/page.js" className="right-0px">Sign In</Button>
         <div className='flex items-center gap-2'>
             <h1 className='text-7xl'>Clean<span className='text-primary'>Doc</span></h1>
             <ThemeSwitcher></ThemeSwitcher>
