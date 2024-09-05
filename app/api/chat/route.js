@@ -1,6 +1,6 @@
 import {NextResponse} from 'next/server'
 import OpenAI from "openai"
-//import pdfparse from 'pdf-parse'
+import pdfparse from 'pdf-parse'
 const systemPrompt = `
 You will recive a resume from the user and your job is to improve the wording of the all aspects of the resume. 
 You will generate two different parts for the resume.
@@ -13,15 +13,22 @@ You will generate two different parts for the resume.
 export async function POST(req){
     const fs = require('fs')
     const pdf = require('pdf-parse')
-    let dataBuffer = fs.readFileSync(req.file)
-    pdfparse(dataBuffer).then(function(data){
-        const str = data.text
+    let dataBuffer = fs.readFileSync('Shavil_Resume.pdf')//req.file)
+    
+    pdf(dataBuffer).then(function(data){
+        //const str = data.text
         //const dat = req.text()
         //console.log(dat)
-        console.log(str)
+        ///console.log(str)
     })
-    return new NextResponse 
+    /*.catch(function(error){
+        if(error.message === 'NullError'){
 
+        } else {
+            console.error(error)
+        }
+    })*/
+    return new NextResponse 
     /*const data = await req.text()
     console.log(data)
     //})

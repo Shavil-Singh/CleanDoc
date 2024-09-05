@@ -19,7 +19,6 @@ export default function Home() {
       body: file,
   }).then((res) => setPdfstr(res))
     
-    
     /*const text = "hello"
     fetch('api/pdstr',{
       method:'POST',
