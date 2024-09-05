@@ -4,6 +4,14 @@ import "./globals.css";
 import {NextUIProvider} from "@nextui-org/react";
 import {ThemeProvider as NextThemesProvider} from "next-themes";
 
+import {
+    ClerkProvider,
+    SignInButton,
+    SignedIn,
+    SignedOut,
+    UserButton
+  } from '@clerk/nextjs'
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,6 +22,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body className={inter.className}>
         <NextUIProvider>
@@ -23,5 +32,6 @@ export default function RootLayout({ children }) {
         </NextUIProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }

@@ -1,7 +1,16 @@
 'use client'
-import { Button, Progress, Textarea } from '@nextui-org/react'
+import { Button, Link, Navbar, NavbarBrand, NavbarContent, NavbarItem, Progress, Textarea } from '@nextui-org/react'
+
+import {
+    SignInButton,
+    SignedIn,
+    SignedOut,
+    UserButton
+  } from '@clerk/nextjs'
+
 import DropZone from './components/DropZone'
 import ThemeSwitcher from './components/ThemeSwitcher'
+
 import { useState } from 'react'
 
 
@@ -52,7 +61,29 @@ export default function Home() {
     }
 
     return (
+    <div className=' w-screen h-screen'>
+        <Navbar>
+            <NavbarBrand>
+            <p>Clean<span className='text-primary'>Doc</span></p>            
+            </NavbarBrand>
+
+            <NavbarContent justify="end">
+                <NavbarItem><ThemeSwitcher /></NavbarItem>
+                <NavbarItem>
+                    <SignedOut>
+                        <SignInButton><Button color='primary'>Sign in</Button></SignInButton>
+                    </SignedOut>
+
+                    <SignedIn>
+                        <UserButton />    
+                    </SignedIn>                    
+                </NavbarItem>
+            </NavbarContent>
+        </Navbar>
+
     <div className='flex w-screen h-screen flex-col justify-center items-center gap-10'>
+
+
         <div className='flex items-center gap-2'>
             <h1 className='text-7xl'>Clean<span className='text-primary'>Doc</span></h1>
             <ThemeSwitcher />
@@ -72,6 +103,7 @@ export default function Home() {
         {loading ? <Progress size='sm' isIndeterminate aria-label='Loading...' className='max-w-md'/> : <Button color='primary' onClick={handleSubmit}>Submit</Button>}
 
         {result && <div className="flex flex-col w-1/3 justify-center flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4"> <Textarea isReadOnly variant='bordered' defaultValue={result}></Textarea> <Button color='primary' onClick={() => {navigator.clipboard.writeText(result)}}>Copy</Button></div>}
+    </div>
     </div>
 
   )
