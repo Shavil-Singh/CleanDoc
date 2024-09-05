@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^5.4.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@nextui-org/react": "^2.4.6",
@@ -16,6 +17,9 @@
     "next": "14.2.7",
     "next-themes": "^0.3.0",
     "openai": "^4.57.0",
+    "pdf-lib": "^1.17.1",
+    "pdf-parse": "^1.1.1",
+    "pdf2json": "^3.1.4",
     "react": "^18",
     "react-dom": "^18"
   },
